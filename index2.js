@@ -38,9 +38,6 @@ const mgrPrompt = [
         name: "mgrOffice",
         message: "What is the team manager's office number?",
     },
-    {
-
-    }
 ]
 
 const engPrompt = [
@@ -89,35 +86,16 @@ const intPrompt = [
     },
 ]
 
-const addMember = [    
-    {
-        type: "confrm",
-        name: "addMember",
-        message: "Would you like to add another team member?",
-    }, 
-    {
-        type: "list",
-        name: "newMember",
-        message: "What type of team member would you like to add?",
-        choices: ["Engineer", "Intern"],
-        when(answers) {
-            return answers.addMember;
-        }, 
-    },
-    
-]
+const addMember = {
+    type: "list",
+    name: "addMember",
+    message: "Who else would you like to add?",
+    choices: ["Engineer", "Intern", "No additional members."]
+}
 
 const init = () => {
-        
-    inquirer.prompt(mgrPrompt).then((answers) => {
-        const teamMgr = new Manager(answers.mgrName, answers.mgrID, answers.mgrEmail, answers.mgrOffice)
-        const engineerArray =[];
-        const internArray = [];
-        console.log(answers);
-        console.log(teamMgr);
-    })
+    teamBuild
 }
-init();
 
 // const teamPrompt = (content) => {
 //     inquirer.prompt(content).then(buildTeam()).then((answers) => {
