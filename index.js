@@ -1,3 +1,4 @@
+//variables for app dependencies
 const fs = require("fs");
 const inquirer = require("inquirer");
 const Employee = require("./lib/Employee")
@@ -104,11 +105,13 @@ const addMember = [
     
 ]
 
+//arrays for various empoyee-derived objects
 let mngArray = [];
 let engArray = [];
 let intArray = [];
 let team = [];
 
+//Function that builds the cards for the team
 async function buildCards(team) {
     let compiledCards = '';
     team.forEach(teamMember => {
@@ -116,7 +119,7 @@ async function buildCards(team) {
             case "Manager":{ 
                 let newCard = 
             `   <div class="card col" style="width: 18rem;">
-                <div class="card-body">
+                <div class="card-body card-color">
                     <h5 class="card-title">${teamMember.name}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">${teamMember.getRole()}</h6>
                     <p class="card-text">${teamMember.name}'s id is ${teamMember.id}, and their office number is ${teamMember.officeNumber}</p>
@@ -130,7 +133,7 @@ async function buildCards(team) {
             case "Engineer":{ 
                 let newCard = 
             `   <div class="card col" style="width: 18rem;">
-                <div class="card-body">
+                <div class="card-body card-color">
                     <h5 class="card-title">${teamMember.name}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">${teamMember.getRole()}</h6>
                     <p class="card-text">${teamMember.name}'s id is ${teamMember.id}</p>
@@ -144,7 +147,7 @@ async function buildCards(team) {
             }
             case "Intern":{ 
                 let newCard = 
-            `   <div class="card col" style="width: 18rem;">
+            `   <div class="card col card-color" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">${teamMember.name}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">${teamMember.getRole()}</h6>
@@ -158,7 +161,6 @@ async function buildCards(team) {
             }
         }
     });
-    console.log(compiledCards);
     return compiledCards;
 } 
 
@@ -174,8 +176,10 @@ async function htmlCompiler(compiledCards) {
         <title>Tech Team!</title>
       </head>
       <body>
-        <h1>Tech Team!</h1>
-            <main class="container">
+        <header class="header">
+            <h1>Tech Team!</h1>
+        </header>
+        <main class="container">
                 <section class="row team-container">
                     ${compiledCards}
                 </section>
@@ -208,14 +212,12 @@ async function recruitment() {
             let addEngineer = await inquirer.prompt(engPrompt);
             let newEngineer = new Engineer(addEngineer.engName, addEngineer.engID, addEngineer.engEmail, addEngineer.engGithub);
             engArray.push(newEngineer);
-            console.log(engArray);
             await recruitment() 
             break}; 
         case "Intern":{
             let addIntern = await inquirer.prompt(intPrompt);
             let newIntern = new Intern (addIntern.intName, addIntern.intID, addIntern.intEmail, addIntern.intSchool);
             intArray.push(newIntern);
-            console.log(intArray);
             await recruitment ()   
             break};
         case "No Additional Members":
@@ -228,28 +230,17 @@ async function teamBuilder() {
 
     let manager = await inquirer.prompt(mgrPrompt);
     if (manager) {
-        // let teamName = manager.teamName;
         let teamMgr = new Manager(manager.mgrName, manager.mgrID, manager.mgrEmail, manager.mgrOffice) 
-        console.log(teamMgr);
-        // team.push(teamName);
         mngArray.push(teamMgr);
     }
 
     await recruitment();
 
     team = [...mngArray, ...engArray, ...intArray]
-    
 
     let cards = await buildCards(team);
     await htmlCompiler(cards);
     await fileHandler(baseHtml, cards);
-    // console.log(team);
-    // console.log(team[0].name)
-    // console.log(team[0].getRole())
-    // console.log(team[1].getRole())
-    // console.log(compiledCards);
-
-
 }
 
 

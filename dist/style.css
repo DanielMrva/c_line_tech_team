@@ -1,0 +1,14 @@
+body {
+    background-color: beige;
+}
+
+.header {
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.card-color {
+    background-color: lightgray;
+}
