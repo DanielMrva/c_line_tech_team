@@ -118,13 +118,14 @@ async function buildCards(team) {
         switch (teamMember.getRole()) {
             case "Manager":{ 
                 let newCard = 
-            `   <div class="card col" style="width: 18rem;">
-                <div class="card-body card-color">
-                    <h5 class="card-title">${teamMember.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${teamMember.getRole()}</h6>
-                    <p class="card-text">${teamMember.name}'s id is ${teamMember.id}, and their office number is ${teamMember.officeNumber}</p>
-                    <a href="mailto:${teamMember.email}" class="card-link">Email</a>
-                </div>
+            `   
+                <div class="card col  card-color" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${teamMember.name}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${teamMember.getRole()}</h6>
+                        <p class="card-text">${teamMember.name}'s id is ${teamMember.id}, and their office number is ${teamMember.officeNumber}</p>
+                        <a href="mailto:${teamMember.email}" class="card-link">Email</a>
+                    </div>
                 </div>
             `   
                 compiledCards += newCard;
@@ -132,14 +133,15 @@ async function buildCards(team) {
             }
             case "Engineer":{ 
                 let newCard = 
-            `   <div class="card col" style="width: 18rem;">
-                <div class="card-body card-color">
-                    <h5 class="card-title">${teamMember.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${teamMember.getRole()}</h6>
-                    <p class="card-text">${teamMember.name}'s id is ${teamMember.id}</p>
-                    <a href="mailto:${teamMember.email}" class="card-link">Email</a>
-                    <a href="https://github.com/${teamMember.github}" class="card-link">Github</a>
-                </div>
+            `   
+                <div class="card col card-color" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${teamMember.name}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${teamMember.getRole()}</h6>
+                        <p class="card-text">${teamMember.name}'s id is ${teamMember.id}</p>
+                        <a href="mailto:${teamMember.email}" class="card-link">Email</a>
+                        <a href="https://github.com/${teamMember.github}" class="card-link">Github</a>
+                    </div>
                 </div>
             `   
                 compiledCards += newCard;
@@ -147,13 +149,14 @@ async function buildCards(team) {
             }
             case "Intern":{ 
                 let newCard = 
-            `   <div class="card col card-color" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">${teamMember.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${teamMember.getRole()}</h6>
-                    <p class="card-text">${teamMember.name}'s id is ${teamMember.id}, they are a part of ${teamMember.school}'s coding internship program.</p>
-                    <a href="mailto:${teamMember.email}" class="card-link">Email</a>
-                </div>
+            `   
+                <div class="card col card-color" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${teamMember.name}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${teamMember.getRole()}</h6>
+                        <p class="card-text">${teamMember.name}'s id is ${teamMember.id}, they are a part of ${teamMember.school}'s coding internship program.</p>
+                        <a href="mailto:${teamMember.email}" class="card-link">Email</a>
+                    </div>
                 </div>
             `   
                 compiledCards += newCard;
@@ -169,25 +172,25 @@ async function htmlCompiler(compiledCards) {
     `<!doctype html>
     <html lang="en">
       <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="./style.css">
-        <title>Tech Team!</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <link rel="stylesheet" href="./style.css">
+            <title>Tech Team!</title>
       </head>
       <body>
-        <header class="header">
-            <h1>Tech Team!</h1>
-        </header>
-        <main class="container">
+            <header class="header">
+                <h1>Tech Team!</h1>
+            </header>
+            <main class="container">
                 <section class="row team-container">
                     ${compiledCards}
                 </section>
             </main>
     
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
-      </body>
+        </body>
     </html>
     `
 }
